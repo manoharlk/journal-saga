@@ -12,10 +12,10 @@ import {
   List,
   ListOrdered,
 } from "lucide-react";
-import LoadingCircle from "@/ui/shared/loading-circle";
+import LoadingCircle from "@/src/ui/shared/loading-circle";
 import { toast } from "sonner";
 import va from "@vercel/analytics";
-import Magic from "@/ui/shared/magic";
+import Magic from "@/src/ui/shared/magic";
 
 interface CommandItemProps {
   title: string;

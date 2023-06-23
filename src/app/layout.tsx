@@ -1,14 +1,15 @@
-import "@/styles/globals.css";
+import "@/src/styles/globals.css";
 import cx from "classnames";
-import { cal, inter } from "@/styles/fonts";
+import { cal, inter } from "@/src/styles/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { Toaster } from "sonner";
 
+
 const title =
-  "Novel – Notion-style WYSIWYG editor with AI-powered autocompletions";
+  "Journal Saga";
 const description =
-  "Novel is a Notion-style WYSIWYG editor with AI-powered autocompletions. Built with Tiptap, OpenAI, and Vercel AI SDK.";
+  "Journal with superpowers.";
 
 export const metadata: Metadata = {
   title,
