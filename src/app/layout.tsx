@@ -4,6 +4,7 @@ import { cal, inter } from "@/src/styles/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { Toaster } from "sonner";
+import Navbar from "../ui/navbar";
 
 
 const title =
@@ -36,7 +37,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Toaster />
-      <body className={cx(cal.variable, inter.variable)}>{children}</body>
+      <body className={cx(cal.variable, inter.variable)}>
+        <Navbar />
+        {children}
+      </body>
       <Analytics />
     </html>
   );
