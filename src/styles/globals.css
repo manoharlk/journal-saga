@@ -16,3 +16,8 @@
   pointer-events: none;
   height: 0;
 }
+
+.NavBar {
+  background-color: #e2d1ff;
+  color: #3f2a63;
+}

@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     title,
     description,
     card: "summary_large_image",
-    creator: "@steventey",
+    creator: "",
   },
-  metadataBase: new URL("https://novel.sh"),
+  metadataBase: new URL("https://journal-saga.vercel.app/"),
   themeColor: "#ffffff",
 };
 
