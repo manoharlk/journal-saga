@@ -1,6 +1,11 @@
+"use client"
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import debounce from 'lodash/debounce';
+import { toast } from 'sonner';
+import useLocalStorage from '@/src/app/lib/hooks/use-local-storage';
+import { redirect } from 'next/navigation';
+
 
 type FormData = {
     name: string;
@@ -30,6 +35,8 @@ const OnboardingForm: React.FC = () => {
     const gender = watch('gender');
     const journalReasons = getValues('journalReasons');
 
+
+
     const debouncedInputChange = debounce((field: keyof FormData, value: string | Record<string, boolean>) => {
         setValue(field, value);
         setEditStep((prevStep) => prevStep + 1);
@@ -39,6 +46,9 @@ const OnboardingForm: React.FC = () => {
         const selectedReasons = Object.keys(data.journalReasons).filter((reason) => data.journalReasons[reason]);
         console.log({ ...data, journalReasons: selectedReasons });
         setIsSubmitted(true);
+        localStorage.setItem('userData', JSON.stringify({ ...data, journalReasons: selectedReasons }));
+        toast.success('Onboarding completed!');
+        redirect('/')
     };
 
     const handleEditStep = (step: number) => {
