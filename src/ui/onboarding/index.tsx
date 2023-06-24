@@ -1,13 +1,13 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import debounce from 'lodash/debounce';
 import { toast } from 'sonner';
 import useLocalStorage from '@/src/app/lib/hooks/use-local-storage';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 
-type FormData = {
+export type FormData = {
     name: string;
     age: string;
     gender: string;
@@ -36,6 +36,15 @@ const OnboardingForm: React.FC = () => {
     const journalReasons = getValues('journalReasons');
 
 
+    const router = useRouter()
+
+    useEffect(() => {
+        // some logic...
+
+        if (isSubmitted) {
+            router.replace(`/dashboard`)
+        }
+    }, [isSubmitted])
 
     const debouncedInputChange = debounce((field: keyof FormData, value: string | Record<string, boolean>) => {
         setValue(field, value);
@@ -45,10 +54,10 @@ const OnboardingForm: React.FC = () => {
     const onSubmit = (data: FormData) => {
         const selectedReasons = Object.keys(data.journalReasons).filter((reason) => data.journalReasons[reason]);
         console.log({ ...data, journalReasons: selectedReasons });
-        setIsSubmitted(true);
+
         localStorage.setItem('userData', JSON.stringify({ ...data, journalReasons: selectedReasons }));
         toast.success('Onboarding completed!');
-        redirect('/')
+        setIsSubmitted(true);
     };
 
     const handleEditStep = (step: number) => {
