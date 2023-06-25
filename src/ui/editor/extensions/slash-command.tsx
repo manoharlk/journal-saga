@@ -163,20 +163,20 @@ const CommandList = ({
         from: range.from,
         to: range.from + completion.length,
       });
-      // Create a new transaction
-      const tr = editor.state.tr;
+      // // Create a new transaction
+      // const tr = editor.state.tr;
 
-      // Create a new text selection for the range
-      const selection = TextSelection.create(tr.doc, range.from, range.from + completion.length);
+      // // Create a new text selection for the range
+      // const selection = TextSelection.create(tr.doc, range.from, range.from + completion.length);
 
-      // Set the new selection
-      tr.setSelection(selection);
+      // // Set the new selection
+      // tr.setSelection(selection);
 
-      // Toggle bold formatting for the selection
-      tr.setStoredMarks(editor.schema.marks.bold.create());
+      // // Toggle bold formatting for the selection
+      // tr.setStoredMarks(editor.schema.marks.bold.create());
 
-      // Apply the transaction
-      editor.view.dispatch(tr);
+      // // Apply the transaction
+      // editor.view.dispatch(tr);
     },
     onError: () => {
       toast.error("Something went wrong.");
