@@ -69,11 +69,15 @@ const OnboardingForm: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="container items-center justify-center my-5">
             <div className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
-                        <p className="mb-4">Hi! What's your name?</p>
+                        <p className="mb-4">
+                            Welcome to Journal Saga.
+                            We want to know you better so that we can help you with your journaling journey.
+                            What's your name?
+                        </p>
                         {editStep === 0 ? (
                             <div>
                                 <input

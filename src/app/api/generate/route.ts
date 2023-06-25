@@ -46,12 +46,14 @@ export async function POST(req: Request): Promise<Response> {
   content = content.replace(/\n/g, " ").replace(/\/$/, "").slice(0, 5000);
 
   const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo-16k",
+    // model: "gpt-3-turbo-16k",
+    model: "gpt-4-0613",
     messages: [
       {
         role: "system",
         content:
-          "You are an AI writing assistant that continues existing text based on context from prior text. " +
+          "You are an AI journaling assistant that looks at existing text and based on context from prior text, generates thoughtful prompts from the user. Output one thoughtful prompt. " +
+          "If there's no input or not enough context, just ask a thoughtful prompt. " +
           "Give more weight/priority to the later characters than the beginning ones.",
       },
       {

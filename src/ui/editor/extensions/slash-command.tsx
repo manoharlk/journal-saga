@@ -16,6 +16,7 @@ import LoadingCircle from "@/src/ui/shared/loading-circle";
 import { toast } from "sonner";
 import va from "@vercel/analytics";
 import Magic from "@/src/ui/shared/magic";
+import { TextSelection } from "@tiptap/pm/state";
 
 interface CommandItemProps {
   title: string;
@@ -43,7 +44,7 @@ const Command = Extension.create({
           range: Range;
           props: any;
         }) => {
-          props.command({ editor, range });
+          props?.command({ editor, range });
         },
       },
     };
@@ -61,8 +62,8 @@ const Command = Extension.create({
 const getSuggestionItems = ({ query }: { query: string }) => {
   return [
     {
-      title: "Continue writing",
-      description: "Use AI to expand your thoughts.",
+      title: "Continue writing with AI prompts",
+      description: "Use AI to introspect better.",
       icon: <Magic className="w-7 text-black" />,
     },
     {
@@ -162,6 +163,20 @@ const CommandList = ({
         from: range.from,
         to: range.from + completion.length,
       });
+      // Create a new transaction
+      const tr = editor.state.tr;
+
+      // Create a new text selection for the range
+      const selection = TextSelection.create(tr.doc, range.from, range.from + completion.length);
+
+      // Set the new selection
+      tr.setSelection(selection);
+
+      // Toggle bold formatting for the selection
+      tr.setStoredMarks(editor.schema.marks.bold.create());
+
+      // Apply the transaction
+      editor.view.dispatch(tr);
     },
     onError: () => {
       toast.error("Something went wrong.");
@@ -175,7 +190,7 @@ const CommandList = ({
         command: item.title,
       });
       if (item) {
-        if (item.title === "Continue writing") {
+        if (item.title === "Continue writing with AI prompts") {
           const text = editor.getText();
           complete(text);
         } else {
@@ -221,14 +236,13 @@ const CommandList = ({
       {items.map((item: CommandItemProps, index: number) => {
         return (
           <button
-            className={`flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm text-stone-900 hover:bg-stone-100 ${
-              index === selectedIndex ? "bg-stone-100 text-stone-900" : ""
-            }`}
+            className={`flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm text-stone-900 hover:bg-stone-100 ${index === selectedIndex ? "bg-stone-100 text-stone-900" : ""
+              }`}
             key={index}
             onClick={() => selectItem(index)}
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-md border border-stone-200 bg-white">
-              {item.title === "Continue writing" && isLoading ? (
+              {item.title === "Continue writing with AI prompts" && isLoading ? (
                 <LoadingCircle />
               ) : (
                 item.icon
