@@ -1,5 +1,5 @@
 {
-  "name": "novel",
+  "name": "journal-saga",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,8 +11,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@tiptap/core": "^2.0.3",
     "@tiptap/extension-image": "^2.0.3",
     "@tiptap/extension-link": "^2.0.0-beta.220",
@@ -40,8 +38,10 @@
     "openai-edge": "^1.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.45.0",
     "react-markdown": "^8.0.5",
+    "react-spinners": "^0.13.8",
     "sonner": "^0.4.0",
     "tippy.js": "^6.3.7",
     "typescript": "4.9.5",
